@@ -69,7 +69,7 @@ export default function Navbar() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          item.current ? 'bg-gray-900 text-red-900' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium'
                         )}
                         aria-current={item.current ? 'page' : undefined}
@@ -85,10 +85,10 @@ export default function Navbar() {
               {session?.user?.name ? (
                 <>
                   <span className='block sm:hidden text-gray-300 rounded-md px-3 py-2 text-sm font-small'>
-                    {session.user.name.length < 20 ? (session.user.name) : (session.user.name.substring(0,18) + '...')}
+                    {session.user.name.length < 20 ? (session.user.name) : (session.user.name.substring(0, 18) + '...')}
                   </span>
                   <span className='hidden sm:block text-gray-300 rounded-md px-3 py-2 text-sm font-small'>
-                    {session.user.name.length < 30 ? (session.user.name) : (session.user.name.substring(0,28) + '...')}
+                    {session.user.name.length < 30 ? (session.user.name) : (session.user.name.substring(0, 28) + '...')}
                   </span>
                   <button
                     className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'

@@ -17,6 +17,21 @@ import { Mission } from "src/models/Mission";
 
 export const missions: Mission[] = [
   {
+    id: "abc",
+    title: "Build and create a Node.js job in Cloud Run!!!",
+    technologies: [
+      'cloud_run',
+      'container_registry',
+      'cloud_build'
+    ],
+    learningResources: [
+      {
+        title: "Create a Node.js job in Cloud Run",
+        link: 'https://cloud.google.com/run/docs/quickstarts/jobs/build-create-nodejs'
+      }
+    ]
+  },
+  {
     id: "Sb8XWrxLMykaBU7oZEMH",
     title: "Deploy a NodeJS App with a Firestore Database",
     technologies: ['cloud_run', 'firestore', 'cloud_storage'],
