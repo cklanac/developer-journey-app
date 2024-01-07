@@ -14,15 +14,32 @@
  * limitations under the License.
  */
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
-import type { NextApiRequest, NextApiResponse } from 'next'
+// import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data = {
-  name: string
+// type Data = {
+//   name: string
+// }
+
+// export default function handler(
+//   req: NextApiRequest,
+//   res: NextApiResponse<Data>
+// ) {
+//   res.status(200).json({ name: 'John Doe' })
+// }
+
+import type { NextApiRequest, NextApiResponse } from 'next'; type Labels = {};
+const log = (message: string | Error, severity: string, labels?: Labels) => {
+  console.log(JSON.stringify({ message, severity, "logging.googleapis.com/labels": labels }));
+}
+const logInfo = (message: string, labels?: Labels) => { log(message, "INFO", labels) };
+const logWarn = (message: string, labels?: Labels) => { log(message, "WARNING", labels) };
+const logError = (error: Error | string, labels?: Labels) => {
+  const message = error instanceof Error ? error.stack || error.message : error; log(message, "ERROR", labels);
+}; type Data = {
+  name: string | string[],
 }
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
+export default function handler(req: NextApiRequest, res: NextApiResponse<Data>,
 ) {
-  res.status(200).json({ name: 'John Doe' })
+  const name = req.query?.name ?? "unknown"; switch (name) { case "info": logInfo("user sent info", { key: "info" }); break; case "warn": logWarn("user sent warning", { key: "warn" }); break; case "error": logError("user sent error", { key: "error" }); break; default: logError(new Error(`user sent ${name}`), { key: "unknown" }); }  res.status(200).json({ name });
 }
